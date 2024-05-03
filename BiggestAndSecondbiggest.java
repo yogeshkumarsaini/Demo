@@ -10,10 +10,10 @@ public class BiggestAndSecondbiggest {
         for(int i=0;i<a.length;i++){
             a[i]=sc.nextInt();
         }
-        checkBiggestAndSecondbiggest(a);
+        checkSecondbiggest(a);
         sc.close();
     }
-    public static void checkBiggestAndSecondbiggest(int[] a){
+    public static void checkSecondbiggest(int[] a){
         int biggest=a[0];
         int secondBiggest=Integer.MIN_VALUE;
         for(int i=0; i<a.length;i++){
@@ -25,7 +25,6 @@ public class BiggestAndSecondbiggest {
                 secondBiggest=a[i];
             }
         }
-        System.out.println("Biggest number in the array are: "+biggest);
         if(secondBiggest!=Integer.MIN_VALUE)
             System.out.println("Second biggest number in the array are: "+secondBiggest);
         else
