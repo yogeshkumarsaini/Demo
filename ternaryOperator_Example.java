@@ -9,6 +9,6 @@ public class ternaryOperator_Example {
 
         int second_largest = (largest ==a) ? (b>c ? b:c):((largest==b) ? (a>c ? a:c):(a>b ? a:b));
         
-        System.out.println("Largest Number: " + second_largest);
+        System.out.println("Second Largest Number: " + second_largest);
       }
 }
