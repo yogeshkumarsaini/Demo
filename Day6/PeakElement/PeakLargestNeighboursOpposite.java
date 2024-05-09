@@ -2,7 +2,7 @@ package Day6.PeakElement;
 
 import java.util.Scanner;
 
-public class peakSmallestNeighbours {
+public class PeakLargestNeighboursOpposite {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the size of array");
@@ -18,10 +18,10 @@ public class peakSmallestNeighbours {
     }
     public static int checkElement(int[] a){
         for (int i = 1; i < a.length - 1; i++) {
-            if (a[i] > a[i - 1] && a[i] > a[i + 1]) {
+            if (a[i] < a[i - 1] && a[i] < a[i + 1]) {
                 return a[i];
             }
         }
-        return -1; // return -1 if no peak element is found
+        return -1;
     }
 }
