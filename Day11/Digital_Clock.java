@@ -8,6 +8,7 @@ public class Digital_Clock{
             DateTimeFormatter d=DateTimeFormatter.ofPattern("HH:mm:ss");
             String s=l.format(d);
             System.out.println(s);
+          
             try {
                 Thread.sleep(1000); 
             } catch (InterruptedException e) {
@@ -15,4 +16,4 @@ public class Digital_Clock{
             }
         }
     }
-}
+
