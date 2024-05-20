@@ -1,6 +1,7 @@
 package Day13.Map_Java;
 
 import java.util.HashMap;
+import java.util.Map;
 public class hash_map {
     public static void main(String[] args) {
        
@@ -21,6 +22,16 @@ public class hash_map {
         System.out.println(hm);
 
         System.out.println(hm.size());
+        System.out.println(hm.keySet());
+        System.out.println(hm.values());
+        System.out.println(hm.containsKey(null));
+        System.out.println(hm.containsValue("Two"));
+        System.out.println(hm.entrySet());
+        System.out.println(hm.putIfAbsent(9, "Nine"));
+        System.out.println(hm);
+
+      
+
        
 
     }
