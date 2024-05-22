@@ -1,0 +1,51 @@
+// CREATE 3 TABLES IN MYSQL IN A SINGLE DATABASE SCHOOL STUDENT COURSE AND SHOW RELEVANT DATA
+
+mysql> CREATE TABLE School (
+    ->     SchoolID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     SchoolName VARCHAR(100) NOT NULL,
+    ->     Address VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> CREATE TABLE Student (
+    ->     StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     StudentName VARCHAR(100) NOT NULL,
+    ->     Age INT,
+    ->     SchoolID INT,
+    ->     FOREIGN KEY (SchoolID) REFERENCES School(SchoolID)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE Course (
+    ->     CourseID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     CourseName VARCHAR(100) NOT NULL,
+    ->     Credits INT,
+    ->     StudentID INT,
+    ->     FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> Insert into School (SchoolName, Address) values("SRGC", "Muzaffarnagar");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> Insert into Student (StudentName, Age, SchoolId) values("Yogesh",24,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> Insert into Course (CourseName, Credits, StudentId) values("Computer Scienceand Engineering",4,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> Select * from Student s, School sc, Course c where s.SchoolId=sc.SchoolId AND s.StudentId =c.StudentId;
++-----------+-------------+------+----------+----------+------------+---------------+----------+---------------------------------+---------+-----------+
+| StudentID | StudentName | Age  | SchoolID | SchoolID | SchoolName | Address       | CourseID | CourseName                      | Credits | StudentID |
++-----------+-------------+------+----------+----------+------------+---------------+----------+---------------------------------+---------+-----------+
+|         1 | Yogesh      |   24 |        1 |        1 | SRGC       | Muzaffarnagar |        1 | Computer Scienceand Engineering |       4 |         1 |
++-----------+-------------+------+----------+----------+------------+---------------+----------+---------------------------------+---------+-----------+
+1 row in set (0.02 sec)
+
+mysql> Select s.StudentId,S.Studentname,s.age,s.schoolid,sc.SchoolName,sc.Address,c.Courseid,c.coursename,c.credits from Student s, School sc, Course c where s.SchoolId=sc.SchoolId AND s.StudentId =c.StudentId;
++-----------+-------------+------+----------+------------+---------------+----------+---------------------------------+---------+
+| StudentId | Studentname | age  | schoolid | SchoolName | Address       | Courseid | coursename                      | credits |
++-----------+-------------+------+----------+------------+---------------+----------+---------------------------------+---------+
+|         1 | Yogesh      |   24 |        1 | SRGC       | Muzaffarnagar |        1 | Computer Scienceand Engineering |       4 |
++-----------+-------------+------+----------+------------+---------------+----------+---------------------------------+---------+
+1 row in set (0.00 sec)
