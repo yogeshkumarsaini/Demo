@@ -1,0 +1,143 @@
+// To create the Databse
+
+mysql> CREATE DATABASE USERS
+    -> ;
+Query OK, 1 row affected (0.06 sec)
+
+// To use the Databse
+
+mysql> USE USERS
+Database changed
+
+// To Create the table in the Database
+
+mysql> CREATE TABLE EMPLOYEE(ID INT PRIMARY KEY,
+    -> NAME VARCHAR(50) NOT NULL,
+    -> ADDRESSINFO INT);
+Query OK, 0 rows affected (0.12 sec)
+
+// To Show the table fields, type and constraint
+
+mysql> DESC EMPLOYEE;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| ID          | int         | NO   | PRI | NULL    |       |
+| NAME        | varchar(50) | NO   |     | NULL    |       |
+| ADDRESSINFO | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+
+// To Insert the data in the table
+
+mysql> INSERT INTO EMPLOYEE VALUES(1,"YOGESH",1),(2,"KOMI",2);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+// To check the data of the table
+
+mysql> SELECT * FROM EMPLOYEE;
++----+--------+-------------+
+| ID | NAME   | ADDRESSINFO |
++----+--------+-------------+
+|  1 | YOGESH |           1 |
+|  2 | KOMI   |           2 |
++----+--------+-------------+
+2 rows in set (0.00 sec)
+
+// To Update the data of the table
+
+mysql> UPDATE EMPLOYEE SET NAME="YOGESH SAINI" WHERE ID=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+// After changed the table data
+
+mysql> SELECT * FROM EMPLOYEE;
++----+--------------+-------------+
+| ID | NAME         | ADDRESSINFO |
++----+--------------+-------------+
+|  1 | YOGESH SAINI |           1 |
+|  2 | KOMI         |           2 |
++----+--------------+-------------+
+2 rows in set (0.00 sec)
+
+// To Delete the data from the table
+
+mysql> DELETE FROM EMPLOYEE WHERE ID=2;
+Query OK, 1 row affected (0.01 sec)
+
+// After deletion of data from the table
+
+mysql> SELECT * FROM EMPLOYEE;
++----+--------------+-------------+
+| ID | NAME         | ADDRESSINFO |
++----+--------------+-------------+
+|  1 | YOGESH SAINI |           1 |
++----+--------------+-------------+
+1 row in set (0.00 sec)
+
+// To Create the another the table in the same database
+
+mysql> CREATE TABLE EMP_ADDRESS(ADDRESSID INT PRIMARY KEY,
+    -> CITY VARCHAR(20) NOT NULL,
+    -> STATE VARCHAR(20) NOT NULL);
+Query OK, 0 rows affected (0.05 sec)
+
+// To Delete the table data 
+
+mysql> DELETE FROM EMPLOYEE WHERE ID=1;
+Query OK, 1 row affected (0.01 sec)
+
+
+// To add the Foreign in the table
+
+mysql> ALTER TABLE EMPLOYEE ADD FOREIGN KEY (ADDRESSINFO) REFERENCES EMP_ADDRESS(ADDRESSID);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+// To Insert the data in the Emp_Address table
+
+mysql> INSERT INTO EMP_ADDRESS VALUES(1,"SHAMLI","UP");
+Query OK, 1 row affected (0.01 sec)
+
+// To Insert the data in the Employee table
+
+mysql> INSERT INTO EMPLOYEE VALUES(1,"YOGESH",1);
+Query OK, 1 row affected (0.01 sec)
+
+// To join the Employee and Emp_Address table into one table
+
+mysql> SELECT * FROM EMPLOYEE,EMP_ADDRESS WHERE ADDRESSINFO=ADDRESSID;
++----+--------+-------------+-----------+--------+-------+
+| ID | NAME   | ADDRESSINFO | ADDRESSID | CITY   | STATE |
++----+--------+-------------+-----------+--------+-------+
+|  1 | YOGESH |           1 |         1 | SHAMLI | UP    |
++----+--------+-------------+-----------+--------+-------+
+1 row in set (0.00 sec)
+
+// To Select the employee name and emp_adress city from the table without join
+
+mysql> select e.name, a.city
+    -> from employee e, emp_address a
+    -> where e.addressinfo=a.addressid;
++--------+--------+
+| name   | city   |
++--------+--------+
+| YOGESH | SHAMLI |
++--------+--------+
+1 row in set (0.00 sec)
+
+// With the join Query
+
+mysql> select *
+    -> from employee e
+    -> join emp_address a on e.addressinfo = a.addressid;
++----+--------+-------------+-----------+--------+-------+
+| ID | NAME   | ADDRESSINFO | ADDRESSID | CITY   | STATE |
++----+--------+-------------+-----------+--------+-------+
+|  1 | YOGESH |           1 |         1 | SHAMLI | UP    |
++----+--------+-------------+-----------+--------+-------+
+1 row in set (0.01 sec)
+
