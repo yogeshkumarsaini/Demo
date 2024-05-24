@@ -1,0 +1,43 @@
+For connect the git to github
+$ git config --global user.name "yogeshkumarsaini"
+git config --global user.email "yogeshkumarsaini1085@gmail.com"
+
+to check the connection 
+git config --list
+
+to select the folder to local repositary
+cd 'D:\AdvanceJava\my-java-project'
+
+for initize 
+git init
+
+to check the status
+git status
+
+
+
+for single file Add
+git add file name
+
+for multiple file Add
+git add .
+
+to remove  the file
+git rm --cached file name
+
+to commit the local repositary with some message
+git commit -m "my first txt file"
+
+to connect the local to global repositary
+git remote add origin ''https://github.com/yogeshkumarsaini/my-java-project.git'
+
+to push the file in global repositary
+git push -u origin master
+
+to clear the screen 
+clear
+
+to clone the 
+git clone repositary url
+git push repositary branchname
+git pull repositary url  ex- git pull 'https://github.com/sandeep0226/my-java-project.git'
